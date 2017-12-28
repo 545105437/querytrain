@@ -1,0 +1,25 @@
+server:
+  port: 9999
+  context-path: /querytrain
+spring:
+  datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/train
+      username: root
+      data-password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+########################################################
+###THYMELEAF (ThymeleafAutoConfiguration)
+########################################################
+#  thymeleaf:
+#    prefix: classpath:/templates/
+#    suffix: .html
+#    mode: LEGACYHTML5
+#    encoding: UTF-8
+#    cache: false
+
+
+
