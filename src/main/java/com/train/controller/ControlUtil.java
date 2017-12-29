@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @RestController
@@ -41,11 +42,10 @@ public class ControlUtil {
 	 * @return
 	 */
 	@GetMapping(value = "/search/{companyName}")
-	public Result_train search(@PathVariable("companyName") String companyName) {
-
+	public Result_train search(@PathVariable("companyName") String companyName) throws UnsupportedEncodingException {
 		List<Company> list = companyService.findByCompanyNameContaining(companyName);
 		if(list.size() == 0){
-			return new Result_train("0","无可用重要标记文件",list);
+			return new Result_train("0","查询结果为空，无匹配公司");
 		}else
 			return  new Result_train("0", "接口返回成功", list);
 	}
@@ -59,7 +59,10 @@ public class ControlUtil {
 	public Result_train addCompany(@RequestBody DataParam<Company> companyList){
 		List<Company> lst = companyList.getData();
 		Company company = lst.get(0);
-		companyService.addOneCompany(company);
+		int count =  companyService.addOneCompany(company);
+		if(count == 1)
+			return new Result_train("0", "成功插入 " + count +" 条数据。");
+
 		return new Result_train();
 	}
 	

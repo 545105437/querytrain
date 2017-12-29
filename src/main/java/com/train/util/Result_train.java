@@ -2,6 +2,8 @@ package com.train.util;
 
 import com.alibaba.fastjson.JSONObject;
 
+import java.util.ArrayList;
+
 public class Result_train {
 	private String code;
 	private String message;
@@ -10,13 +12,13 @@ public class Result_train {
 	public Result_train() {
 		this.code = "0";
 		this.message = "接口调用成功";
-		this.data = new JSONObject();
+		this.data = new ArrayList();
 	}
 
 	public Result_train(String code, String message) {
 		this.code = code;
 		this.message = message;
-		this.data = new JSONObject();
+		this.data = new ArrayList();
 	}
 
 	public Result_train(String code, String message, Object data) {
