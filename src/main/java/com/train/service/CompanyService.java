@@ -12,4 +12,6 @@ public interface CompanyService {
 
     List<Company> findByCompanyNameContaining(String name);
 
+    int addOneCompany(Company company);
+
 }

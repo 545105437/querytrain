@@ -20,8 +20,13 @@ public class CompanyServiceImp implements CompanyService{
 
     @Override
     public List<Company> findByCompanyNameContaining(String name) {
-        System.out.println("进入service的findByCompany_nameContaining");
-        companyRepository.findByCompanyNameContaining(name);
-        return null;
+
+        return companyRepository.findByCompanyNameContaining(name);
+    }
+
+    @Override
+    public int addOneCompany(Company company) {
+        companyRepository.save(company);
+        return 0;
     }
 }

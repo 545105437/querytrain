@@ -1,14 +1,14 @@
 package com.train.controller;
 
 import com.train.model.Company;
+import com.train.model.DataParam;
 import com.train.service.CompanyService;
+import com.train.util.Result_train;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @RestController
@@ -35,14 +35,32 @@ public class ControlUtil {
 		return "submitData";
 	}
 
+	/**
+	 *  按照公司名称模糊查询
+	 * @param companyName
+	 * @return
+	 */
 	@GetMapping(value = "/search/{companyName}")
-	public List<Company> search( @PathVariable("companyName") String companyName) {
-		System.out.println("进入"+companyName);
-		List<Company> list =  companyService.findByCompanyNameContaining(companyName);
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i));
-		}
-		return list;//companyService.findByCompanyNameContaining(companyName);
+	public Result_train search(@PathVariable("companyName") String companyName) {
+
+		List<Company> list = companyService.findByCompanyNameContaining(companyName);
+		if(list.size() == 0){
+			return new Result_train("0","无可用重要标记文件",list);
+		}else
+			return  new Result_train("0", "接口返回成功", list);
+	}
+
+	/**
+	 *  根据前端页面传递的对象参数，保存公司信息
+	 * @param companyList
+	 * @return
+	 */
+	@PostMapping(value = "/addCompany")
+	public Result_train addCompany(@RequestBody DataParam<Company> companyList){
+		List<Company> lst = companyList.getData();
+		Company company = lst.get(0);
+		companyService.addOneCompany(company);
+		return new Result_train();
 	}
 	
 }

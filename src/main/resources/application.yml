@@ -4,9 +4,10 @@ server:
 spring:
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/train
+      url: jdbc:mysql://127.0.0.1:3306/train?useUnicode=true&amp;characterEncoding=utf8
       username: root
       data-password:
+      sql-script-encoding: UTF-8
   jpa:
     hibernate:
       ddl-auto: update

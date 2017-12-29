@@ -12,12 +12,10 @@ import java.util.List;
 public interface CompanyRepository extends JpaRepository<Company,Integer>{
 
     /**
-     * 按照公司名模糊查询
+     * 按照公司名模糊查询（方法名解析的方法）
      * @param name
      * @return
      */
     public List<Company> findByCompanyNameContaining(String name);
-
-    public List<Company> findAll();
 
 }

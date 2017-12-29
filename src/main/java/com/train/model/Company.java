@@ -1,5 +1,7 @@
 package com.train.model;
 
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,25 +22,26 @@ public class Company {
     @NotNull(message = "公司名称不得为空")
     private String companyName;//公司名称
 
-    private String companyShortName;//公司简称
+    @Column
+    private String companyShortName = "待补充";//公司简称
 
     private String companyType;//公司性质
 
-    private String infoSource;//信息来源
+    private String infoSource = "网友提供";//信息来源
 
     private String companyAddress;//公司地址
 
     private String businessScope;//经营范围
 
-    private String detailsDescription;//详细描述
+    private String detailsDescription = "暂无";//详细描述
 
-    private String number;//公司被访问次数
+    private int number = 0;//公司被访问次数
 
-    private Date inputTime;//录入时间
+    private Date inputTime = new Date();//录入时间
 
-    private Date updateTime;//更新时间
+    private Date updateTime = new Date();//更新时间
 
-    private Integer state;//状态
+    private Integer state = 1;//状态
 
     public Company() {
     }
@@ -107,11 +110,11 @@ public class Company {
         this.detailsDescription = detailsDescription;
     }
 
-    public String getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
@@ -150,7 +153,7 @@ public class Company {
                 ", companyAddress='" + companyAddress + '\'' +
                 ", businessScope='" + businessScope + '\'' +
                 ", detailsDescription='" + detailsDescription + '\'' +
-                ", number='" + number + '\'' +
+                ", number=" + number +
                 ", inputTime=" + inputTime +
                 ", updateTime=" + updateTime +
                 ", state=" + state +
