@@ -26,7 +26,20 @@ public class CompanyServiceImp implements CompanyService{
 
     @Override
     public int addOneCompany(Company company) {
-        companyRepository.save(company);
-        return 0;
+        //先查是否有同名公司，再做判断
+        List<Company> companyList = findByCompanyName(company.getCompanyName());
+        Company newCompany = null;
+        if(companyList.size() == 0)
+            newCompany = companyRepository.save(company);
+        else
+            return -1;//表示有重复
+        if(newCompany == null)
+            return 0;//表示失败
+        return 1;//表示成功
+    }
+
+    @Override
+    public List<Company> findByCompanyName(String name) {
+        return companyRepository.findByCompanyName(name);
     }
 }

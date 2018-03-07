@@ -16,6 +16,13 @@ public interface CompanyRepository extends JpaRepository<Company,Integer>{
      * @param name
      * @return
      */
-    public List<Company> findByCompanyNameContaining(String name);
+    List<Company> findByCompanyNameContaining(String name);
 
+
+    /**
+     * 按公司名查询公司
+     * @param name
+     * @return
+     */
+    List<Company> findByCompanyName(String name);
 }
