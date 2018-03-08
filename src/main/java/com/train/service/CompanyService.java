@@ -1,6 +1,9 @@
 package com.train.service;
 
+import com.train.dto.CompanyDTO;
 import com.train.model.Company;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -15,7 +18,7 @@ public interface CompanyService {
      * @param name
      * @return
      */
-    List<Company> findByCompanyNameContaining(String name);
+    Page<CompanyDTO> findByCompanyNameContaining(String name, Pageable pageable);
 
     /**
      * 根据前端页面传递的对象参数，保存公司信息

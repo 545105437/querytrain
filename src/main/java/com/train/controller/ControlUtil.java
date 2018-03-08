@@ -29,31 +29,31 @@ public class ControlUtil {
 	 */
 	@GetMapping(value = "/search/{companyName}",produces = "text/html;charset=UTF-8")
 	public void search(@PathVariable("companyName") String companyName, HttpServletRequest req, HttpServletResponse res) {
-		List<Company> list = companyService.findByCompanyNameContaining(companyName);
-		/*if(list.size() == 0){
-			return new Result_train("0","查询结果为空，无匹配公司");
-		}else
-			return  new Result_train("0", "接口返回成功", list);*/
-
-		String str  = "Hello world";
-		JSONObject json = new JSONObject();
-		json.put("code", 0);
-		if(list.size() == 0) {
-			json.put("message", "查询结果为空，无匹配公司");
-			json.put("data", list);
-		}else{
-			json.put("message", "接口返回成功");
-			json.put("data", list);
-		}
-		try {
-			//解决乱码问题
-			res.setCharacterEncoding("UTF-8");
-			res.setContentType("text/html;charset=UTF-8");
-			//前台定义的jsonp:'Succcess'
-			res.getWriter().print("Success("+json.toJSONString()+")");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		List<Company> list = companyService.findByCompanyNameContaining(companyName);
+//		/*if(list.size() == 0){
+//			return new Result_train("0","查询结果为空，无匹配公司");
+//		}else
+//			return  new Result_train("0", "接口返回成功", list);*/
+//
+//		String str  = "Hello world";
+//		JSONObject json = new JSONObject();
+//		json.put("code", 0);
+//		if(list.size() == 0) {
+//			json.put("message", "查询结果为空，无匹配公司");
+//			json.put("data", list);
+//		}else{
+//			json.put("message", "接口返回成功");
+//			json.put("data", list);
+//		}
+//		try {
+//			//解决乱码问题
+//			res.setCharacterEncoding("UTF-8");
+//			res.setContentType("text/html;charset=UTF-8");
+//			//前台定义的jsonp:'Succcess'
+//			res.getWriter().print("Success("+json.toJSONString()+")");
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 /*	public Result_train search(@PathVariable("companyName") String companyName) throws UnsupportedEncodingException {
 		List<Company> list = companyService.findByCompanyNameContaining(companyName);

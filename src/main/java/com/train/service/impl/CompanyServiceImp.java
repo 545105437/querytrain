@@ -1,9 +1,14 @@
-package com.train.serviceimp;
+package com.train.service.impl;
 
 import com.train.Repository.CompanyRepository;
+import com.train.coverter.Company2CompanyDTOConverter;
+import com.train.dto.CompanyDTO;
 import com.train.model.Company;
 import com.train.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +24,13 @@ public class CompanyServiceImp implements CompanyService{
     private CompanyRepository companyRepository;
 
     @Override
-    public List<Company> findByCompanyNameContaining(String name) {
+    public Page<CompanyDTO> findByCompanyNameContaining(String name, Pageable pageable) {
 
-        return companyRepository.findByCompanyNameContaining(name);
+        Page<Company> companyPage = companyRepository.findByCompanyNameContaining(name, pageable);
+
+        List<CompanyDTO> companyDTOList = Company2CompanyDTOConverter.convert(companyPage.getContent());
+
+        return new PageImpl<CompanyDTO>(companyDTOList, pageable, companyPage.getTotalElements());
     }
 
     @Override

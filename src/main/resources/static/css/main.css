@@ -13,8 +13,13 @@
     margin-top: 30%;
     top: 30%;
 }
+
 #submitData{
     /*position: absolute;*/
     margin-top: 30%;
     top: 30%;
+}
+
+#list{
+    margin-top: 20%;
 }

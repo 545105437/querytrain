@@ -6,14 +6,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="main">培训机构查询</a>
+        <a class="navbar-brand" href="/querytrain/main">培训机构查询</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="main">首页</a></li>
-            <li><a href="aboutUs">关于</a></li>
-            <li><a href="submitData">提交数据</a></li>
+            <li class="active"><a href="/querytrain/main">首页</a></li>
+            <li><a href="/querytrain/aboutUs">关于</a></li>
+            <li><a href="/querytrain/submitData">提交数据</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">捐赠<strong class="caret"></strong></a>
                 <ul class="dropdown-menu">

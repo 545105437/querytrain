@@ -14,8 +14,4 @@ public class DataParam<T> {
 		this.data = data;
 	}
 
-
-	
-	
-
 }

@@ -1,6 +1,8 @@
 package com.train.Repository;
 
 import com.train.model.Company;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -14,9 +16,10 @@ public interface CompanyRepository extends JpaRepository<Company,Integer>{
     /**
      * 按照公司名模糊查询（方法名解析的方法）
      * @param name
+     * @param pageable
      * @return
      */
-    List<Company> findByCompanyNameContaining(String name);
+    Page<Company> findByCompanyNameContaining(String name, Pageable pageable);
 
 
     /**
