@@ -51,4 +51,17 @@ public class CompanyServiceImp implements CompanyService{
     public List<Company> findByCompanyName(String name) {
         return companyRepository.findByCompanyName(name);
     }
+
+    @Override
+    public CompanyDTO findOne(Integer companyId) {
+
+        Company company = companyRepository.findOne(companyId);
+        if (company == null){
+            System.out.println("companyId不存在");
+        }
+
+        CompanyDTO companyDTO = Company2CompanyDTOConverter.convert(company);
+
+        return companyDTO;
+    }
 }

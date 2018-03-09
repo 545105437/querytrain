@@ -15,11 +15,13 @@
 }
 
 #submitData{
-    /*position: absolute;*/
-    margin-top: 30%;
-    top: 30%;
+    margin-top: 20%;
 }
 
 #list{
+    margin-top: 20%;
+}
+
+#detail{
     margin-top: 20%;
 }

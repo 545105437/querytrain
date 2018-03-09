@@ -53,4 +53,23 @@ public class CompanyController {
 
         return new ModelAndView("company/search", map);
     }
+
+    /**
+     * 公司详情
+     * @param companyId
+     * @param map
+     * @return
+     */
+    @GetMapping("/detail")
+    public ModelAndView detail(@RequestParam("companyId") Integer companyId,
+                               Map<String, Object> map){
+
+        CompanyDTO companyDTO = new CompanyDTO();
+
+        companyDTO = companyService.findOne(companyId);
+
+        map.put("companyDTO", companyDTO);
+
+        return new ModelAndView("company/detail", map);
+    }
 }

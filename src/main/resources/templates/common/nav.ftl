@@ -17,8 +17,8 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">捐赠<strong class="caret"></strong></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">微信</a></li>
-                    <li><a href="#">支付宝</a></li>
+                    <li><a href="#wxModal" data-toggle="modal">微信</a></li>
+                    <li><a href="#aliModal" data-toggle="modal">支付宝</a></li>
                 </ul>
             </li>
         </ul>
@@ -29,4 +29,30 @@
         </form>
     </div>
 </nav>
+
+<div class="modal fade" id="wxModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 280px;height:250px; ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+               <img src="/querytrain/images/WX.png" width="250px" height="250px" >
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="aliModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 280px;height:250px; ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <img src="/querytrain/images/ZFB.jpg" width="250px" height="250px" >
+            </div>
+        </div>
+    </div>
+</div>
 

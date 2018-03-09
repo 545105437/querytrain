@@ -24,7 +24,7 @@
                             <tr>
                                 <td>${companyDTO.companyName}</td>
                                 <td>${companyDTO.companyAddress}</td>
-                                <td><a href="#">详情</a></td>
+                                <td><a href="/querytrain/company/detail?companyId=${companyDTO.companyId}">详情</a></td>
                             </tr>
                             </#list>
                             </tbody>

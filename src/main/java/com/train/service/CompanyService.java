@@ -33,4 +33,11 @@ public interface CompanyService {
      * @return
      */
     List<Company> findByCompanyName(String name);
+
+    /**
+     * 按公司id查询
+     * @param companyId
+     * @return
+     */
+    CompanyDTO findOne(Integer companyId);
 }
