@@ -3,10 +3,8 @@ package com.train.dto;
 import com.train.enums.CompanyTypeEnum;
 import com.train.util.EnumUtil;
 import lombok.Data;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;

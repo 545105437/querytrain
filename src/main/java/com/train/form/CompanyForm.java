@@ -2,11 +2,8 @@ package com.train.form;
 
 import lombok.Data;
 
-import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 /**
  * @author wal
