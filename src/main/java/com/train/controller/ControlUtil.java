@@ -70,15 +70,15 @@ public class ControlUtil {
 	 */
 	@PostMapping(value = "/addCompany")
 	public Result_train addCompany(@RequestBody DataParam<Company> companyList){
-		List<Company> lst = companyList.getData();
-		Company company = lst.get(0);
-		int count =  companyService.addOneCompany(company);
-		if(count == 1)
-			return new Result_train("0", "成功插入 " + count +" 条数据。");
-		else if(count == -1)
-			return new Result_train("1","有重复数据,新增失败" );
-		else if(count == 0)
-			return new Result_train("-1","新增过程中失败");
+//		List<Company> lst = companyList.getData();
+//		Company company = lst.get(0);
+//		int count =  companyService.addOneCompany(company);
+//		if(count == 1)
+//			return new Result_train("0", "成功插入 " + count +" 条数据。");
+//		else if(count == -1)
+//			return new Result_train("1","有重复数据,新增失败" );
+//		else if(count == 0)
+//			return new Result_train("-1","新增过程中失败");
 
 		return new Result_train();
 	}

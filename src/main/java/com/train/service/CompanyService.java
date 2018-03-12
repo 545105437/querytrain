@@ -25,7 +25,7 @@ public interface CompanyService {
      * @param company
      * @return
      */
-    int addOneCompany(Company company);
+    Company addOneCompany(Company company);
 
     /**
      * 按公司名查询公司
@@ -40,4 +40,11 @@ public interface CompanyService {
      * @return
      */
     CompanyDTO findOne(Integer companyId);
+
+    /**
+     * 增加公司被访问次数
+     * @param companyId
+     * @return
+     */
+    Company increaseNumber(Integer companyId);
 }

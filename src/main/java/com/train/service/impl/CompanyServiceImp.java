@@ -34,17 +34,19 @@ public class CompanyServiceImp implements CompanyService{
     }
 
     @Override
-    public int addOneCompany(Company company) {
+    public Company addOneCompany(Company company) {
         //先查是否有同名公司，再做判断
         List<Company> companyList = findByCompanyName(company.getCompanyName());
         Company newCompany = null;
-        if(companyList.size() == 0)
+        if(companyList.size() == 0) {
             newCompany = companyRepository.save(company);
-        else
-            return -1;//表示有重复
-        if(newCompany == null)
-            return 0;//表示失败
-        return 1;//表示成功
+        }
+
+        if(newCompany == null){
+
+        }
+
+        return newCompany;
     }
 
     @Override
@@ -63,5 +65,13 @@ public class CompanyServiceImp implements CompanyService{
         CompanyDTO companyDTO = Company2CompanyDTOConverter.convert(company);
 
         return companyDTO;
+    }
+
+    @Override
+    public Company increaseNumber(Integer companyId) {
+        Company company = companyRepository.findOne(companyId);
+        company.setNumber(company.getNumber() + 1);
+        company = companyRepository.save(company);
+        return company;
     }
 }

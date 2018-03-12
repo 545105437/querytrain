@@ -1,22 +1,20 @@
 package com.train.controller;
 
-import com.alibaba.fastjson.JSONObject;
+import com.train.CompanyException;
 import com.train.dto.CompanyDTO;
+import com.train.form.CompanyForm;
 import com.train.model.Company;
 import com.train.service.CompanyService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +39,7 @@ public class CompanyController {
     @GetMapping("/search")
     public ModelAndView search(@RequestParam("companyName") String companyName,
                                @RequestParam(value = "page" ,defaultValue = "1") Integer page,
-                               @RequestParam(value = "size", defaultValue = "10") Integer size,
+                               @RequestParam(value = "size", defaultValue = "8") Integer size,
                                Map<String, Object> map) {
 
         PageRequest pageRequest = new PageRequest(page - 1, size);
@@ -64,12 +62,64 @@ public class CompanyController {
     public ModelAndView detail(@RequestParam("companyId") Integer companyId,
                                Map<String, Object> map){
 
+        //访问公司详情，被访问次数 + 1
+        companyService.increaseNumber(companyId);
+
         CompanyDTO companyDTO = new CompanyDTO();
 
         companyDTO = companyService.findOne(companyId);
+        if (companyDTO == null){
+            //抛出异常，跳转错误页面，跳转主页面
+        }
 
         map.put("companyDTO", companyDTO);
 
         return new ModelAndView("company/detail", map);
+    }
+
+    @PostMapping("/save")
+    public ModelAndView save (@Valid CompanyForm form,
+                      BindingResult bindingResult,
+                      Map<String, Object> map) {
+
+        if (bindingResult.hasErrors()){
+            map.put("msg",bindingResult.getFieldError().getDefaultMessage());
+            map.put("url","/querytrain/submitData");
+            return new ModelAndView("common/error", map);
+        }
+
+        String companyName = form.getCompanyName();
+        List<Company> list = companyService.findByCompanyName(companyName);
+
+        if (list.size() != 0) {
+            map.put("msg","有重复公司名称，请重新填写");
+            map.put("url","/querytrain/submitData");
+            return new ModelAndView("common/error", map);
+        }
+
+        CompanyDTO companyDTO = new CompanyDTO();
+
+        try{
+            if ("".equals(form.getCompanyShortName())) {
+                form.setCompanyShortName("待补充");
+            }
+            if ("".equals(form.getBusinessScope())) {
+                form.setBusinessScope("暂无");
+            }
+            if ("".equals(form.getDetailsDescription())) {
+                form.setDetailsDescription("暂无");
+            }
+            BeanUtils.copyProperties(form, companyDTO);
+            Company company = new Company();
+            BeanUtils.copyProperties(companyDTO, company);
+            companyService.addOneCompany(company);
+        }catch (CompanyException e){
+            map.put("msg",e.getMessage());
+            map.put("url","/querytrain/submitData");
+            return new ModelAndView("common/error", map);
+        }
+
+        map.put("url","/querytrain/main");
+        return new ModelAndView("common/success", map);
     }
 }

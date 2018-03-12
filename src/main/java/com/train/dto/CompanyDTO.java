@@ -1,6 +1,9 @@
 package com.train.dto;
 
+import com.train.enums.CompanyTypeEnum;
+import com.train.util.EnumUtil;
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +29,7 @@ public class CompanyDTO {
     @Column
     private String companyShortName = "待补充";//公司简称
 
-    private String companyType;//公司性质
+    private int companyType;//公司性质
 
     private String infoSource = "网友提供";//信息来源
 
@@ -36,12 +39,16 @@ public class CompanyDTO {
 
     private String detailsDescription = "暂无";//详细描述
 
-    private int number = 0;//公司被访问次数
+    private int number;// = 0;//公司被访问次数
 
-    private Date inputTime = new Date();//录入时间
+    private Date inputTime;// = new Date();//录入时间
 
-    private Date updateTime = new Date();//更新时间
+    private Date updateTime;// = new Date();//更新时间
 
-    private Integer state = 1;//状态
+    private int state = 1;//状态
+
+    public CompanyTypeEnum getCompanyTypeEnum(){
+        return EnumUtil.getByCode(companyType, CompanyTypeEnum.class);
+    }
 
 }

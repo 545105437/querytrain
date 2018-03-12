@@ -23,9 +23,9 @@ public class CompanyForm {
 
     private String companyShortName;//公司简称
 
-    private String companyType;//公司性质
+    private int companyType;//公司性质
 
-    private String infoSource;//信息来源
+//    private String infoSource;//信息来源
 
     private String companyAddress;//公司地址
 

@@ -11,6 +11,7 @@
             <div class="container-fluid">
                 <div class="row clearfix">
                     <div class="col-md-12 column" id="list">
+                        <h2>相关公司列表</h2><br>
                         <table class="table table-bordered table-hover">
                             <thead>
                             <tr>

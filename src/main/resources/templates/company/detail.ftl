@@ -13,13 +13,13 @@
                 <tbody>
                 <tr>
                     <td width="15%" class="warning"><b>公司名称</b></td>
-                    <td width="35%" class="info"><a href="https://www.tianyancha.com/search?key=${companyDTO.companyName}">${companyDTO.companyName}</a></td>
+                    <td width="35%" class="info"><a target="_blank" href="https://www.tianyancha.com/search?key=${companyDTO.companyName}">${companyDTO.companyName}</a></td>
                     <td width="15%" class="warning"><b>公司简称</b></td>
                     <td width="35%" class="info">${companyDTO.companyShortName}</td>
                 </tr>
                 <tr >
                     <td width="15%" class="warning"><b>公司性质</b></td>
-                    <td width="35%" class="info">${companyDTO.companyType}</td>
+                    <td width="35%" class="info">${companyDTO.getCompanyTypeEnum().message}</td>
                     <td width="15%" class="warning"><b>公司地址</b></td>
                     <td width="35%" class="info">${companyDTO.companyAddress}</td>
                 </tr>

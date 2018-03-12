@@ -29,7 +29,7 @@ public class Company {
     @Column
     private String companyShortName;//公司简称
 
-    private String companyType;//公司性质
+    private int companyType;//公司性质
 
     private String infoSource;//信息来源
 
@@ -45,6 +45,6 @@ public class Company {
 
     private Date updateTime;//更新时间
 
-    private Integer state;//状态
+    private int state;//状态
 
 }
