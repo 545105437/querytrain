@@ -90,6 +90,8 @@
             </div>
         </div>
 
+        <div id="bottom"></div>
+
 
     <!-- Copyright -->
     <#include "../common/footer.ftl">

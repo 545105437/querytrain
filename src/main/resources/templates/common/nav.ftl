@@ -21,12 +21,16 @@
                     <li><a href="#aliModal" data-toggle="modal">支付宝</a></li>
                 </ul>
             </li>
+            <li>
+                <B style="color: red">本站暂时还未挂上服务器，每日工作时间可以访问（9:00~17:30）,请大家见谅</B>
+            </li>
         </ul>
         <form class="navbar-form navbar-left" role="search" style="display:none;">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="请输入企业名或简称"/>
             </div> <button type="submit" class="btn btn-default">Submit</button>
         </form>
+
     </div>
 </nav>
 
