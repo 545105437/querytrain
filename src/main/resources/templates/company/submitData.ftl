@@ -30,6 +30,7 @@
                         <option value="2">校企合作</option>
                         <option value="3">疑似传销</option>
                         <option value="4">皮包公司外包培训</option>
+                        <option value="5">黑名单</option>
                     </select>
                 </div>
                 <#--<div class="form-group">-->

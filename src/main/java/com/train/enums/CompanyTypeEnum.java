@@ -13,6 +13,7 @@ public enum CompanyTypeEnum implements CodeEnum{
     SCHOOL_QI_COOPERATION(2,"校企合作"),
     Suspected_pyramid_sale(3,"疑似传销"),
     TRAINING_OUTSOURCING(4,"皮包公司外包培训"),
+    BLACKLIST(5,"黑名单"),
     ;
 
     private Integer code;
