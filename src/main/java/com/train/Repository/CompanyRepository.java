@@ -19,7 +19,7 @@ public interface CompanyRepository extends JpaRepository<Company,Integer>{
      * @param pageable
      * @return
      */
-    Page<Company> findByCompanyNameContaining(String name, Pageable pageable);
+    Page<Company> findByCompanyNameContainingAndState(String name,Integer state, Pageable pageable);
 
 
     /**
