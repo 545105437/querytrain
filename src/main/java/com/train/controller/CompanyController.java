@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,8 +44,17 @@ public class CompanyController {
                                @RequestParam(value = "size", defaultValue = "8") Integer size,
                                Map<String, Object> map) {
 
+        if (StringUtils.isEmpty(companyName)){
+            System.out.println("不许为空数据");
+            return new ModelAndView("company/main");
+        }
         PageRequest pageRequest = new PageRequest(page - 1, size);
         Page<CompanyDTO> companyDTOPage = companyService.findByCompanyNameContaining(companyName,pageRequest);
+        if (companyDTOPage.getTotalPages() == 0){
+            map.put("msg","无"+companyName+"相关信息！");
+            map.put("url","/querytrain/main");
+            return new ModelAndView("company/emtity", map);
+        }
         map.put("companyDTOPage", companyDTOPage);
         map.put("companyName", companyName);
         map.put("currentPage", page);
@@ -77,6 +88,13 @@ public class CompanyController {
         return new ModelAndView("company/detail", map);
     }
 
+    /**
+     * 提交数据
+     * @param form
+     * @param bindingResult
+     * @param map
+     * @return
+     */
     @PostMapping("/save")
     public ModelAndView save (@Valid CompanyForm form,
                       BindingResult bindingResult,

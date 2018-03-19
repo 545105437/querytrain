@@ -47,4 +47,24 @@ public interface CompanyService {
      * @return
      */
     Company increaseNumber(Integer companyId);
+
+    /**
+     * 获取所有公司列表
+     * @return
+     */
+    Page<CompanyDTO> findList( Pageable pageable);
+
+    /**
+     * 通过审批
+     * @param companyId
+     * @return
+     */
+    Company passed(Integer companyId);
+
+    /**
+     * 审批不通过
+     * @param companyId
+     * @return
+     */
+    Company rejected(Integer companyId);
 }

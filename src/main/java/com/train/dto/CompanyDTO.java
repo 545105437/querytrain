@@ -1,6 +1,7 @@
 package com.train.dto;
 
 import com.train.enums.CompanyTypeEnum;
+import com.train.enums.StateEnum;
 import com.train.util.EnumUtil;
 import lombok.Data;
 
@@ -47,6 +48,10 @@ public class CompanyDTO {
 
     public CompanyTypeEnum getCompanyTypeEnum(){
         return EnumUtil.getByCode(companyType, CompanyTypeEnum.class);
+    }
+
+    public StateEnum getStateEnum() {
+        return EnumUtil.getByCode(state, StateEnum.class);
     }
 
 }
