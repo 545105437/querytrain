@@ -31,7 +31,7 @@
                                         <td width="35%" class="info"><#--${companyDTO.getCompanyTypeEnum().message}-->
                                             <select name="companyType" class="form-control">
                                                 <#list companyTypeEnum as companyType>
-                                                    <option value="${companyType.code}" <#if companyDTO.getCompanyTypeEnum().message == companyType.message>selected</#if>>${companyType.message}</option>
+                                                    <option value="${companyType.code}" <#if (companyDTO.getCompanyTypeEnum().message)?? && companyDTO.getCompanyTypeEnum().message == companyType.message>selected</#if>>${companyType.message}</option>
                                                 </#list>
                                             </select>
                                         </td>

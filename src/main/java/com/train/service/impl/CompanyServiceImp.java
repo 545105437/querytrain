@@ -6,6 +6,7 @@ import com.train.dto.CompanyDTO;
 import com.train.enums.StateEnum;
 import com.train.model.Company;
 import com.train.service.CompanyService;
+import com.train.service.WebSocket;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,6 +26,9 @@ public class CompanyServiceImp implements CompanyService{
 
     @Autowired
     private CompanyRepository companyRepository;
+
+    @Autowired
+    private WebSocket webSocket;
 
     @Override
     public Page<CompanyDTO> findByCompanyNameContaining(String name, Pageable pageable) {
@@ -47,8 +51,12 @@ public class CompanyServiceImp implements CompanyService{
         }
 
         if(newCompany == null){
+            //TODO
 
         }
+
+        //发送websocket消息
+        webSocket.sendMessage(newCompany.getCompanyName());
 
         return newCompany;
     }

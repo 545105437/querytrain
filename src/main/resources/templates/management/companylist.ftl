@@ -12,6 +12,18 @@
                 <div class="col-md-12 column">
                     <table class="table table-condensed table-bordered">
                         <thead>
+                        <colgroup>
+                            <col width='15%'>
+                            <col width='8%'>
+                            <col width='8%'>
+                            <col width='8%'>
+                            <col width='20%'>
+                            <col width='25%'>
+                            <col width='6%'>
+                            <col width='3%'>
+                            <col width='3%'>
+                            <col width='6%'>
+                        </colgroup>
                         <tr>
                             <th class="text-center">公司名称</th>
                             <th class="text-center">公司简称</th>
@@ -124,25 +136,25 @@
                 </h4>
             </div>
             <div class="modal-body">
-                你有新的订单
+                你有新的培训机构录入
             </div>
             <div class="modal-footer">
                 <button onclick="javascript:document.getElementById('notice').pause();" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button onclick="location.reload()" type="button" class="btn btn-primary">查看新的订单</button>
+                <button onclick="location.reload()" type="button" class="btn btn-primary">查看新的培训机构</button>
             </div>
         </div>
     </div>
 </div>
 <#--播放音乐-->
 <audio id="notice" loop="loop">
-    <source src="/sell/mp3/song.mp3" type="audio/mpeg">
+    <source src="/querytrain/mp3/song.mp3" type="audio/mpeg">
 </audio>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script>
-    /*var websocket = null;
+    var websocket = null;
     if('WebSocket' in window) {
-        websocket = new WebSocket("ws://query.natapp1.cc/sell/webSocket");
+        websocket = new WebSocket("ws://query.natapp1.cc/querytrain/webSocket");
     }else {
         alert('该浏览器不支持websocket!')
     }
@@ -169,7 +181,7 @@
 
     window.onbeforeunload = function () {
         websocket.close();
-    }*/
+    }
 
 </script>
 

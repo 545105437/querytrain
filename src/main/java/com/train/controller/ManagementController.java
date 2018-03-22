@@ -7,6 +7,7 @@ import com.train.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +40,8 @@ public class ManagementController {
     public ModelAndView companyList(@RequestParam(value = "page" ,defaultValue = "1") Integer page,
                                     @RequestParam(value = "size", defaultValue = "10") Integer size,
                                     Map<String, Object> map){
-        PageRequest request = new PageRequest(page - 1, size);
+        Sort sort = new Sort(Sort.Direction.DESC, "companyId");
+        PageRequest request = new PageRequest(page - 1, size, sort);
         Page<CompanyDTO> companyDTOPage = companyService.findList(request);
         map.put("companyDTOPage", companyDTOPage);
         map.put("currentPage", page);
@@ -99,17 +101,15 @@ public class ManagementController {
     }
 
     @GetMapping("/neworedit")
-    public ModelAndView neworedit(@RequestParam(value = "companyId", required = false) Integer companyId,
+    public ModelAndView neworedit(@RequestParam(value = "companyId", required = false) String companyId,
                                 Map<String, Object> map){
 
         if (!StringUtils.isEmpty(companyId)){
-            CompanyDTO companyDTO = companyService.findOne(companyId);
-//            for (CompanyTypeEnum anEnum : CompanyTypeEnum.values()) {
-//                System.out.println(anEnum.getCode()+" : "+anEnum.getMessage());
-//            }
-            map.put("companyTypeEnum", CompanyTypeEnum.values());
+            CompanyDTO companyDTO = companyService.findOne(Integer.valueOf(companyId));
             map.put("companyDTO", companyDTO);
         }
+
+        map.put("companyTypeEnum", CompanyTypeEnum.values());
 
         return new ModelAndView("management/companyneworedit", map);
     }
