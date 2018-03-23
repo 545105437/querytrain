@@ -14,11 +14,11 @@ import java.util.List;
 public interface CompanyService {
 
     /**
-     * 按照公司名称模糊查询
+     * 按照公司名称模糊查询(分状态)
      * @param name
      * @return
      */
-    Page<CompanyDTO> findByCompanyNameContaining(String name, Pageable pageable);
+    Page<CompanyDTO> findByCompanyNameContaining(String name, Integer state, Pageable pageable);
 
     /**
      * 根据前端页面传递的对象参数，保存公司信息
@@ -67,4 +67,11 @@ public interface CompanyService {
      * @return
      */
     Company rejected(Integer companyId);
+
+    /**
+     * 更新/新增
+     * @param company
+     * @return
+     */
+    Company save(Company company);
 }

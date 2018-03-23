@@ -2,6 +2,7 @@ package com.train.controller;
 
 import com.train.CompanyException;
 import com.train.dto.CompanyDTO;
+import com.train.enums.StateEnum;
 import com.train.form.CompanyForm;
 import com.train.model.Company;
 import com.train.service.CompanyService;
@@ -49,7 +50,7 @@ public class CompanyController {
             return new ModelAndView("company/main");
         }
         PageRequest pageRequest = new PageRequest(page - 1, size);
-        Page<CompanyDTO> companyDTOPage = companyService.findByCompanyNameContaining(companyName,pageRequest);
+        Page<CompanyDTO> companyDTOPage = companyService.findByCompanyNameContaining(companyName, StateEnum.SUCCESS.getCode(), pageRequest);
         if (companyDTOPage.getTotalPages() == 0){
             map.put("msg","无"+companyName+"相关信息！");
             map.put("url","/querytrain/main");

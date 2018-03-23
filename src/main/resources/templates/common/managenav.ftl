@@ -6,7 +6,7 @@
             </a>
         </li>
         <li>
-            <a href="/querytrain/management/companylist"><i class="fa fa-fw fa-list-alt"></i> 新增培训机构</a>
+            <a href="/querytrain/management/companylist"><i class="fa fa-fw fa-list-alt"></i> 已审核培训机构</a>
         </li>
         <li class="dropdown open">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i> 待审核培训机构 <span class="caret"></span></a>
@@ -18,7 +18,7 @@
         </li>
 
         <li>
-            <a href="/sell/seller/logout"><i class="fa fa-fw fa-list-alt"></i> 登出</a>
+            <a href="/querytrain/management/logout"><i class="fa fa-fw fa-list-alt"></i> 登出</a>
         </li>
     </ul>
 </nav>

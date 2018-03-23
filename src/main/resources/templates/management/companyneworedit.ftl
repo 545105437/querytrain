@@ -11,20 +11,20 @@
                     <div class="row clearfix">
                     <#-- 订单详情表数据 -->
                         <div class="col-md-12 column" id="submitData">
-                            <form role="form" method="post" action="">
+                            <form role="form" method="post" action="/querytrain/management/save">
                                 <table class="table">
                                     <tbody>
                                     <tr>
                                         <td width="15%" class="warning"><b>公司名称</b></td>
-                                        <td width="35%" class="info"><input type="text" class="form-control" value="${(companyDTO.companyName)!''}"></td>
+                                        <td width="35%" class="info"><input type="text" class="form-control" name="companyName" value="${(companyDTO.companyName)!''}"></td>
                                         <td width="15%" class="warning"><b>公司简称</b></td>
-                                        <td width="35%" class="info"><input type="text" class="form-control" value="${(companyDTO.companyShortName)!''}"></td>
+                                        <td width="35%" class="info"><input type="text" class="form-control" name="companyShortName" value="${(companyDTO.companyShortName)!''}"></td>
                                     </tr>
                                     <tr >
                                         <td width="15%" class="warning"><b>公司地址</b></td>
-                                        <td width="35%" class="info"><input type="text" class="form-control" value="${(companyDTO.companyAddress)!''}"></td>
+                                        <td width="35%" class="info"><input type="text" class="form-control" name="companyAddress" value="${(companyDTO.companyAddress)!''}"></td>
                                         <td width="15%" class="warning"><b>访问次数</b></td>
-                                        <td width="35%" class="info"><input type="text" class="form-control" value="${(companyDTO.number)!''}"></td>
+                                        <td width="35%" class="info"><input type="text" class="form-control" name="number" value="${(companyDTO.number)!''}"></td>
                                     </tr>
                                     <tr>
                                         <td width="15%" class="warning"><b>公司性质</b></td>
@@ -37,20 +37,21 @@
                                         </td>
                                         <td width="15%" class="warning"><b>信息来源</b></td>
                                         <td width="35%" class="info">
-                                            <input type="text" class="form-control" value="${(companyDTO.infoSource)!''}">
+                                            <input type="text" class="form-control" name="infoSource" value="${(companyDTO.infoSource)!''}">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td width="15%" class="warning"><b>经营范围</b></td>
-                                        <td width="85%" colspan="3" class="info"><textarea class="form-control" rows="5">${(companyDTO.businessScope)!''}</textarea></td>
+                                        <td width="85%" colspan="3" class="info"><textarea class="form-control" name="businessScope" rows="5">${(companyDTO.businessScope)!''}</textarea></td>
                                     </tr>
                                     <tr>
                                         <td width="15%" class="warning"><b>详细描述</b></td>
-                                        <td width="85%" colspan="3" class="info"><textarea class="form-control" rows="5">${(companyDTO.detailsDescription)!''}</textarea></td>
+                                        <td width="85%" colspan="3" class="info"><textarea class="form-control" name="detailsDescription" rows="5">${(companyDTO.detailsDescription)!''}</textarea></td>
                                     </tr>
                                     </tbody>
                                 </table>
                                 <input hidden type="text" name="companyId" value="${(companyDTO.companyId)!''}">
+                                <input hidden type="text" name="state" value="${(companyDTO.state)!''}">
                                 <button type="submit" class="btn btn-primary">提交</button>
                             </form>
                         </div>

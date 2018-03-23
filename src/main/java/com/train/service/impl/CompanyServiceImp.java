@@ -31,9 +31,9 @@ public class CompanyServiceImp implements CompanyService{
     private WebSocket webSocket;
 
     @Override
-    public Page<CompanyDTO> findByCompanyNameContaining(String name, Pageable pageable) {
+    public Page<CompanyDTO> findByCompanyNameContaining(String name,Integer state, Pageable pageable) {
 
-        Page<Company> companyPage = companyRepository.findByCompanyNameContainingAndState(name, StateEnum.WAIT.getCode(), pageable);
+        Page<Company> companyPage = companyRepository.findByCompanyNameContainingAndState(name, state, pageable);
 
         List<CompanyDTO> companyDTOList = Company2CompanyDTOConverter.convert(companyPage.getContent());
 
@@ -125,5 +125,10 @@ public class CompanyServiceImp implements CompanyService{
             //抛出异常
         }
         return company;
+    }
+
+    @Override
+    public Company save(Company company) {
+        return companyRepository.save(company);
     }
 }
