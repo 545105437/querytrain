@@ -22,7 +22,8 @@
                 </ul>
             </li>
             <li>
-                <B style="color: red">本站暂时还未挂上服务器，每日工作时间可以访问（9:00~17:30）,请大家见谅</B>
+              <#--  <B style="color: red">本站暂时还未挂上服务器，每日工作时间可以访问（9:00~17:30）,请大家见谅</B>-->
+                  <a href="#"><B style="color: red">本站收录数据还有待提高，希望大家能一起完善，谢谢！！！</B></a>
             </li>
         </ul>
         <form class="navbar-form navbar-left" role="search" style="display:none;">
