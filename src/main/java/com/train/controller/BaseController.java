@@ -14,6 +14,16 @@ public class BaseController {
      * 跳转到首页
      * @return
      */
+    @RequestMapping("/")
+    public String index(){
+
+        return "company/main";
+    }
+
+    /**
+     * 跳转到首页
+     * @return
+     */
     @RequestMapping("/main")
     public String mainPage(){
 
