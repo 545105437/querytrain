@@ -4,6 +4,7 @@ import com.train.model.Company;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -28,4 +29,12 @@ public interface CompanyRepository extends JpaRepository<Company,Integer>{
      * @return
      */
     List<Company> findByCompanyName(String name);
+
+    /**
+     * 这一条是实验的  后面改
+     * @param name
+     * @return
+     */
+    @Query(value = "select * from company c where c.company_name=?1", nativeQuery = true)
+    List<Company> selectMore(String name);
 }

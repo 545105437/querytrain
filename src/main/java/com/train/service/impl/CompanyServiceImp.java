@@ -128,6 +128,7 @@ public class CompanyServiceImp implements CompanyService{
     }
 
     @Override
+    @Transactional
     public Company save(Company company) {
         return companyRepository.save(company);
     }
