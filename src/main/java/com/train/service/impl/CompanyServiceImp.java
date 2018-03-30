@@ -3,10 +3,13 @@ package com.train.service.impl;
 import com.train.Repository.CompanyRepository;
 import com.train.coverter.Company2CompanyDTOConverter;
 import com.train.dto.CompanyDTO;
+import com.train.enums.ResultEnum;
 import com.train.enums.StateEnum;
+import com.train.exception.CompanyException;
 import com.train.model.Company;
 import com.train.service.CompanyService;
 import com.train.service.WebSocket;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +25,7 @@ import java.util.List;
  * @date 2017/12/28
  */
 @Service
+@Slf4j
 public class CompanyServiceImp implements CompanyService{
 
     @Autowired
@@ -48,11 +52,13 @@ public class CompanyServiceImp implements CompanyService{
         Company newCompany = null;
         if(companyList.size() == 0) {
             newCompany = companyRepository.save(company);
-        }
-
-        if(newCompany == null){
-            //TODO
-
+            if(newCompany == null){
+                log.error("【提交培训机构】提交培训机构失败");
+                throw new CompanyException(ResultEnum.FAIL_TO_SUBMIT);
+            }
+        }else{
+            log.error("【提交培训机构】有重复数据");
+            throw new CompanyException(ResultEnum.DUPLICATE_DATA);
         }
 
         //发送websocket消息
@@ -72,6 +78,7 @@ public class CompanyServiceImp implements CompanyService{
         Company company = companyRepository.findOne(companyId);
         if (company == null){
             System.out.println("companyId不存在");
+            log.error("【公司查询】companyId不存在,companyId = {}",companyId);
         }
 
         CompanyDTO companyDTO = Company2CompanyDTOConverter.convert(company);
@@ -105,8 +112,8 @@ public class CompanyServiceImp implements CompanyService{
         Company updateResult = companyRepository.save(company);
 
         if (updateResult == null){
-            System.out.println("更新公司状态失败");
-            //抛出异常
+            log.error("【更新培训机构状态】更新公司状态失败，companyName = {}", company.getCompanyName());
+            throw new CompanyException(ResultEnum.FAIL_TO_UPDATE);
         }
         return company;
     }
@@ -121,8 +128,8 @@ public class CompanyServiceImp implements CompanyService{
         Company updateResult = companyRepository.save(company);
 
         if (updateResult == null){
-            System.out.println("更新公司状态失败");
-            //抛出异常
+            log.error("【更新培训机构状态】更新公司状态失败，companyName = {}", company.getCompanyName());
+            throw new CompanyException(ResultEnum.FAIL_TO_UPDATE);
         }
         return company;
     }

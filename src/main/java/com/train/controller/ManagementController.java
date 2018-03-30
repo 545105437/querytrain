@@ -1,12 +1,13 @@
 package com.train.controller;
 
-import com.train.CompanyException;
 import com.train.dto.CompanyDTO;
 import com.train.enums.CompanyTypeEnum;
+import com.train.enums.ResultEnum;
+import com.train.exception.CompanyException;
 import com.train.form.CompanyEditForm;
-import com.train.form.CompanyForm;
 import com.train.model.Company;
 import com.train.service.CompanyService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,6 +31,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/management")
+@Slf4j
 public class ManagementController {
 
     @Autowired
@@ -69,10 +70,10 @@ public class ManagementController {
         Company company = new Company();
         try{
             company = companyService.passed(companyId);
-        }catch (Exception e){
-            e.printStackTrace();
+        }catch (CompanyException e){
+           log.error("【通过审核】审批失败，companyName = {}",company.getCompanyName());
 
-            map.put("msg", "审核发生异常");
+            map.put("msg", ResultEnum.FAIL_TO_CHECK.getMessage());
             map.put("url","/querytrain/management/companylist");
             return new ModelAndView("common/error", map);
         }
@@ -94,10 +95,10 @@ public class ManagementController {
         Company company = new Company();
         try{
             company = companyService.rejected(companyId);
-        }catch (Exception e){
-            e.printStackTrace();
+        }catch (CompanyException e){
+            log.error("【审核不通过】审批失败，companyName = {}",company.getCompanyName());
 
-            map.put("msg", "审核发生异常");
+            map.put("msg", ResultEnum.FAIL_TO_CHECK.getMessage());
             map.put("url","/querytrain/management/companylist");
             return new ModelAndView("common/error", map);
         }
@@ -154,7 +155,8 @@ public class ManagementController {
             BeanUtils.copyProperties(companyDTO, company);
             companyService.save(company);
         }catch (CompanyException e){
-            map.put("msg",e.getMessage());
+            log.error("【后台创建新记录】数据转换错误");
+            map.put("msg",ResultEnum.FAIL_TO_DATACHANGE.getMessage());
             map.put("url","/querytrain/management/companylist");
             return new ModelAndView("common/error", map);
         }

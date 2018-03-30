@@ -1,11 +1,13 @@
 package com.train.controller;
 
-import com.train.CompanyException;
 import com.train.dto.CompanyDTO;
+import com.train.enums.ResultEnum;
 import com.train.enums.StateEnum;
+import com.train.exception.CompanyException;
 import com.train.form.CompanyForm;
 import com.train.model.Company;
 import com.train.service.CompanyService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +28,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/company")
+@Slf4j
 public class CompanyController {
 
     @Autowired
@@ -46,7 +48,7 @@ public class CompanyController {
                                Map<String, Object> map) {
 
         if (StringUtils.isEmpty(companyName)){
-            System.out.println("不许为空数据");
+            log.error(ResultEnum.SERACH_NOT_EMTITY.getMessage());
             return new ModelAndView("company/main");
         }
         PageRequest pageRequest = new PageRequest(page - 1, size);
@@ -102,6 +104,7 @@ public class CompanyController {
                       Map<String, Object> map) {
 
         if (bindingResult.hasErrors()){
+            log.error("【创建新记录】参数不正确，form = {}", form);
             map.put("msg",bindingResult.getFieldError().getDefaultMessage());
             map.put("url","/querytrain/submitData");
             return new ModelAndView("common/error", map);
@@ -111,6 +114,7 @@ public class CompanyController {
         List<Company> list = companyService.findByCompanyName(companyName);
 
         if (list.size() != 0) {
+            log.error("【创建新记录】有重复公司名称，相同名称个数：{}", list.size());
             map.put("msg","有重复公司名称，请重新填写");
             map.put("url","/querytrain/submitData");
             return new ModelAndView("common/error", map);
@@ -133,6 +137,7 @@ public class CompanyController {
             BeanUtils.copyProperties(companyDTO, company);
             companyService.addOneCompany(company);
         }catch (CompanyException e){
+            log.error("【创建新记录】数据转换错误");
             map.put("msg",e.getMessage());
             map.put("url","/querytrain/submitData");
             return new ModelAndView("common/error", map);
