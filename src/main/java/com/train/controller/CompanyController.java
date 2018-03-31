@@ -136,6 +136,7 @@ public class CompanyController {
             Company company = new Company();
             BeanUtils.copyProperties(companyDTO, company);
             companyService.addOneCompany(company);
+            log.info("【提交数据】提交的数据为，company = {}", company);
         }catch (CompanyException e){
             log.error("【创建新记录】数据转换错误");
             map.put("msg",e.getMessage());
