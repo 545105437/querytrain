@@ -2,8 +2,13 @@
 /** 按下回车键，点击按钮 */
 $(function(){
     $("body").keydown(function () {
+        var companyName = $("#companyName").val();
         if (event.keyCode == "13") {//keyCode=13是回车键
-            $("#search").click();
+            if(companyName == ""){
+                alert("请填写公司名称或简称");
+            }else{
+                $("#search").click();
+            }
         }
     });
 });
