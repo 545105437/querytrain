@@ -37,6 +37,9 @@
                     <td width="15%" class="warning"><b>详细描述</b></td>
                     <td width="85%" colspan="3" class="info">${companyDTO.detailsDescription}</td>
                 </tr>
+                <tr>
+                    <td colspan="4"  class="warning"><a href="#" onClick="javascript :history.go(-1);" class="btn btn-primary"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp;返回</td>
+                </tr>
                 </tbody>
             </table>
         </div>
