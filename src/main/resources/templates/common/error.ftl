@@ -2,6 +2,8 @@
 <head>
     <meta charset="utf-8">
     <title>错误提示</title>
+    <link rel="shortcut icon" href="/querytrain/images/title.ico" type="image/x-icon">
+    <link rel="icon" href="/querytrain/images/title.ico" type="image/x-icon">
     <link href="https://cdn.bootcss.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
     <body>
