@@ -28,6 +28,9 @@
                                 <td><a href="/querytrain/company/detail?companyId=${companyDTO.companyId}">详情</a></td>
                             </tr>
                             </#list>
+                            <tr>
+                                <td colspan="3"><a href="/querytrain/main"  class="btn btn-primary"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp;返回</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
