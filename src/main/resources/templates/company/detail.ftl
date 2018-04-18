@@ -38,12 +38,15 @@
                     <td width="85%" colspan="3" class="info">${companyDTO.detailsDescription}</td>
                 </tr>
                 <tr>
-                    <td colspan="4"  class="warning"><a href="#" onClick="javascript :history.go(-1);" class="btn btn-primary"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp;返回</td>
+                    <td colspan="4"  class="warning"><a href="#" onClick="javascript :history.go(-1);return false;" class="btn btn-primary"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp;返回</td>
+                </tr>
+                <tr>
+                    <td colspan="4"  class="warning"><a href="http://192.168.2.25:8090/tongji" class="btn btn-primary"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp;点击</td>
                 </tr>
                 </tbody>
             </table>
         </div>
-
+        <div id="bottom"></div>
 
     <!-- Copyright -->
     <#include "../common/footer.ftl">

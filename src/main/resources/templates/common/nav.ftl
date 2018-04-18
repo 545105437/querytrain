@@ -7,6 +7,7 @@
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="/querytrain/main">培训机构查询</a>
+
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -24,6 +25,10 @@
             <li>
               <#--  <B style="color: red">本站暂时还未挂上服务器，每日工作时间可以访问（9:00~17:30）,请大家见谅</B>-->
                   <a href="#"><B style="color: red">本站收录数据还有待提高，希望大家能一起完善，谢谢！！！</B></a>
+            </li>
+            <li>
+                <#-- 天气信息 -->
+                    <div id="tp-weather-widget"></div>
             </li>
         </ul>
         <form class="navbar-form navbar-left" role="search" style="display:none;">
