@@ -45,15 +45,17 @@ public class ManagementController {
      * @return
      */
     @GetMapping("/companylist")
-    public ModelAndView companyList(@RequestParam(value = "page" ,defaultValue = "1") Integer page,
+    public ModelAndView companyList(@RequestParam(value = "companyName" ,defaultValue = "") String companyName,
+                                    @RequestParam(value = "page" ,defaultValue = "1") Integer page,
                                     @RequestParam(value = "size", defaultValue = "10") Integer size,
                                     Map<String, Object> map){
         Sort sort = new Sort(Sort.Direction.DESC, "companyId");
         PageRequest request = new PageRequest(page - 1, size, sort);
-        Page<CompanyDTO> companyDTOPage = companyService.findList(request);
+        Page<CompanyDTO> companyDTOPage = companyService.findList(companyName, request);
         map.put("companyDTOPage", companyDTOPage);
         map.put("currentPage", page);
         map.put("size", size);
+        map.put("companyName", companyName);
 
         return new ModelAndView("management/companylist", map);
     }

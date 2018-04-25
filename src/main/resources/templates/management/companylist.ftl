@@ -10,6 +10,11 @@
         <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-md-12 column">
+                    <form id="myForm" role="form" method="get" action="/querytrain/management/companylist">
+                        <div class="input-group">
+                            <input type="text" class="form-control input-lg" name="companyName" id="companyName" placeholder="请输入公司名称" value="${(companyName)!''}"><span class="input-group-addon btn btn-primary" onclick="submit()">检索</span>
+                        </div>
+                    </form>
                     <table class="table table-condensed table-bordered">
                         <thead>
                         <colgroup>
@@ -63,6 +68,11 @@
                         </#list>
                         </tbody>
                     </table>
+                    <#if (companyDTOPage.getTotalPages() = 0)>
+                        <div align="center">
+                            无相关培训机构信息，请更改检索条件，重新查询
+                        </div>
+                    </#if>
                 </div>
 
             <#--分页-->

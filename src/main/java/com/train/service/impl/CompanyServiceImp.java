@@ -96,8 +96,9 @@ public class CompanyServiceImp implements CompanyService{
     }
 
     @Override
-    public Page<CompanyDTO> findList( Pageable pageable) {
-        Page<Company> companyPage = companyRepository.findAll(pageable);
+    public Page<CompanyDTO> findList(String companyName, Pageable pageable) {
+//        Page<Company> companyPage = companyRepository.findAll(pageable);
+        Page<Company> companyPage = companyRepository.findByCompanyNameContaining(companyName,pageable);
         List<CompanyDTO> companyDTOList = Company2CompanyDTOConverter.convert(companyPage.getContent());
         return new PageImpl<>(companyDTOList, pageable, companyPage.getTotalElements());
     }

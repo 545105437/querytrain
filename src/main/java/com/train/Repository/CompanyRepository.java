@@ -37,4 +37,13 @@ public interface CompanyRepository extends JpaRepository<Company,Integer>{
      */
     @Query(value = "select * from company c where c.company_name=?1", nativeQuery = true)
     List<Company> selectMore(String name);
+
+
+    /**
+     * 后台管理的迷糊查询
+     * @param companyName
+     * @param pageable
+     * @return
+     */
+    Page<Company> findByCompanyNameContaining(String companyName, Pageable pageable);
 }

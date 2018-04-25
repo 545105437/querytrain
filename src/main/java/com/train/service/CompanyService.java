@@ -52,7 +52,7 @@ public interface CompanyService {
      * 获取所有公司列表
      * @return
      */
-    Page<CompanyDTO> findList( Pageable pageable);
+    Page<CompanyDTO> findList( String companyName, Pageable pageable);
 
     /**
      * 通过审批
