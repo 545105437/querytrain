@@ -11,5 +11,6 @@
     <#--<script src="/querytrain/js/jquery-3.2.1.js"></script>-->
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/querytrain/js/main.js"></script>
     <#--<script src="/querytrain/bootstrap-3.3.7/js/bootstrap.min.js"></script>-->
 </head>

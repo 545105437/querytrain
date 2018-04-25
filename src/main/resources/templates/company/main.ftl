@@ -19,5 +19,5 @@
     <#include "../common/footer.ftl">
 </div>
 </body>
-    <script src="/querytrain/js/main.js"></script>
+   <#-- <script src="/querytrain/js/main.js"></script>-->
 </html>

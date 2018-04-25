@@ -20,7 +20,10 @@
             </p>
             <p class="text-center">
                 本站也不排除有人恶意诋毁某些公司，望被记录公司能够见谅并及时联系本站核实情况并删除信息！<br>
-                邮箱：<I><a href="mailto:huangjianjun0912@dingtalk.com">huangjianjun0912@dingtalk.com</a></I>
+                邮箱：<I><a href="mailto:huangjianjun0912@dingtalk.com">huangjianjun0912@dingtalk.com</a></I><br>
+                交流群：<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=b32d6b38bfe9e3887acebbc9356c3329b99a70190e9bcd48b25bae8e24b0431e">
+                            <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="杭州java求职技术交流" title="杭州java求职技术交流">
+                        </a>
             </p>
 
             <p class="text-center">
