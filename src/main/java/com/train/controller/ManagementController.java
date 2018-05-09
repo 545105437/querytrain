@@ -3,6 +3,7 @@ package com.train.controller;
 import com.train.dto.CompanyDTO;
 import com.train.enums.CompanyTypeEnum;
 import com.train.enums.ResultEnum;
+import com.train.enums.StateEnum;
 import com.train.exception.CompanyException;
 import com.train.form.CompanyEditForm;
 import com.train.model.Company;
@@ -46,16 +47,25 @@ public class ManagementController {
      */
     @GetMapping("/companylist")
     public ModelAndView companyList(@RequestParam(value = "companyName" ,defaultValue = "") String companyName,
+                                    @RequestParam(value = "state" ,defaultValue = "S") String state,
                                     @RequestParam(value = "page" ,defaultValue = "1") Integer page,
                                     @RequestParam(value = "size", defaultValue = "10") Integer size,
                                     Map<String, Object> map){
         Sort sort = new Sort(Sort.Direction.DESC, "companyId");
         PageRequest request = new PageRequest(page - 1, size, sort);
-        Page<CompanyDTO> companyDTOPage = companyService.findList(companyName, request);
+//        Page<CompanyDTO> companyDTOPage = companyService.findList(companyName, request);
+        //对state进行转换
+        int newState = StateEnum.SUCCESS.getCode();
+        if(state.equals("W"))
+            newState = StateEnum.WAIT.getCode();
+        else if(state.equals("F"))
+            newState = StateEnum.FAIL.getCode();
+        Page<CompanyDTO> companyDTOPage = companyService.findByCompanyNameContaining(companyName, newState, request);
         map.put("companyDTOPage", companyDTOPage);
         map.put("currentPage", page);
         map.put("size", size);
         map.put("companyName", companyName);
+        map.put("state", state);
 
         return new ModelAndView("management/companylist", map);
     }

@@ -9,11 +9,12 @@
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row clearfix">
-                <div class="col-md-12 column">
+                <div class="col-md-12 column" id="search">
                     <form id="myForm" role="form" method="get" action="/querytrain/management/companylist">
                         <div class="input-group">
-                            <input type="text" class="form-control input-lg" name="companyName" id="companyName" placeholder="请输入公司名称" value="${(companyName)!''}"><span class="input-group-addon btn btn-primary" onclick="submit()">检索</span>
+                            <input type="text" class="form-control input-lg" name="companyName" id="companyName" placeholder="请输入公司名称" value="${(companyName)!''}"><span class="input-group-addon btn btn-primary" id="managementsearch" onclick="submit()">检索</span>
                         </div>
+                        <input type="text" name="state" id="state" value="${(state)!''}" hidden="hidden">
                     </form>
                     <table class="table table-condensed table-bordered">
                         <thead>
@@ -81,7 +82,7 @@
                     <#if currentPage lte 1>
                         <li class="disabled"><a href="#">上一页</a></li>
                     <#else>
-                        <li><a href="/querytrain/management/companylist?page=${currentPage - 1}&size=${size}">上一页</a></li>
+                        <li><a href="/querytrain/management/companylist?companyName=${companyName}&state=${state}&page=${currentPage - 1}&size=${size}">上一页</a></li>
                     </#if>
                     <#-- <#list 1..orderDTOPage.getTotalPages() as index >
                          <#if currentPage == index>
@@ -95,7 +96,7 @@
                     <#-- 以下为带省略号分页 -->
                     <#--第一页-->
                     <#if (companyDTOPage.getTotalPages() > 0)>
-                        <li <#if currentPage == 1>class="disabled"</#if>><a href="/querytrain/management/companylist?page=1&size=${size}" >1</a></li>
+                        <li <#if currentPage == 1>class="disabled"</#if>><a href="/querytrain/management/companylist?companyName=${companyName}&state=${state}&page=1&size=${size}" >1</a></li>
                     </#if>
 
                     <#--如果不只有一页-->
@@ -109,7 +110,7 @@
                         <#list (currentPage - 3)..(currentPage + 3) as index>
                         <#--如果位于第一页和最后一页之间-->
                             <#if (index > 1) && (index < companyDTOPage.getTotalPages())>
-                                <li <#if currentPage == index>class="disabled"</#if>><a href="/querytrain/management/companylist?page=${index}&size=${size}" >${index}</a></li>
+                                <li <#if currentPage == index>class="disabled"</#if>><a href="/querytrain/management/companylist?companyName=${companyName}&state=${state}&page=${index}&size=${size}" >${index}</a></li>
                             </#if>
                         </#list>
 
@@ -119,14 +120,14 @@
                         </#if>
 
                     <#--最后页-->
-                        <li <#if currentPage == companyDTOPage.getTotalPages()>class="disabled"</#if>><a href="/querytrain/management/companylist?page=${companyDTOPage.getTotalPages()}&size=${size}" >${companyDTOPage.getTotalPages()}</a></li>
+                        <li <#if currentPage == companyDTOPage.getTotalPages()>class="disabled"</#if>><a href="/querytrain/management/companylist?companyName=${companyName}&state=${state}&page=${companyDTOPage.getTotalPages()}&size=${size}" >${companyDTOPage.getTotalPages()}</a></li>
                     </#if>
 
 
                     <#if currentPage gte companyDTOPage.getTotalPages()>
                         <li class="disabled"><a href="#">下一页</a></li>
                     <#else>
-                        <li><a href="/querytrain/management/companylist?page=${currentPage + 1}&size=${size}">下一页</a></li>
+                        <li><a href="/querytrain/management/companylist?companyName=${companyName}&state=${state}&page=${currentPage + 1}&size=${size}">下一页</a></li>
                     </#if>
                     </ul>
                 </div>

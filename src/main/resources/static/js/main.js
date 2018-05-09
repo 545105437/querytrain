@@ -21,13 +21,15 @@ tpwidget("show");
 $(function(){
     $("body").keydown(function () {
         var companyName = $("#companyName").val();
-        if (event.keyCode == "13") {//keyCode=13是回车键
-            if(companyName == ""){
-                alert("请填写公司名称或简称");
-            }else{
-                $("#search").click();
-            }
-        }
+        var state = $("#state").val();
+        if (event.keyCode == "13") //keyCode=13是回车键
+            if(state == 'S' || state == 'W' || state == 'F')
+                $("#myForm").submit();
+            else
+                if(companyName == "")
+                    alert("请填写公司名称或简称");
+                else
+                    $("#search").click();
     });
 });
 
@@ -35,8 +37,10 @@ $(function(){
 function submit(){
     var companyName = $("#companyName").val();
     var actionUrl = $("#myForm").attr("action");
+    var state = $("#state").val();
     if(companyName == ""){
-        alert("请填写公司名称或简称");
+        if(state != 'S' && state != 'W' && state != 'F')
+            alert("请填写公司名称或简称");
     }else{
         $("#myForm").attr("action",actionUrl+"?companyName="+companyName);
         $("#myForm").submit();
