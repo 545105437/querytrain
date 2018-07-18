@@ -70,6 +70,10 @@
                         validators: {
                             notEmpty: {
                                 message: '公司名称不能为空'
+                            },
+                            regexp: {
+                                regexp: /^([^\x00-\xff]|[A-Za-z0-9_()])+$/,
+                                message: '用户名只能包含中文、英文、数字、括号和下划线'
                             }
                         }
                     },
@@ -77,6 +81,34 @@
                         validators: {
                             notEmpty: {
                                 message: '公司地址不能为空'
+                            },
+                            regexp: {
+                                regexp: /^([^\x00-\xff]|[A-Za-z0-9_()#])+$/,
+                                message: '公司地址只能包含中文、英文、数字、括号、#和下划线'
+                            }
+                        }
+                    },
+                    businessScope: {
+                        validators: {
+                            regexp: {
+                                regexp: /^([^\x00-\xff]|[A-Za-z0-9_()])+$/,
+                                message: '经营范围只能包含中文、英文、数字、括号和下划线'
+                            }
+                        }
+                    },
+                    companyAddress: {
+                        validators: {
+                            regexp: {
+                                regexp: /^([^\x00-\xff]|[A-Za-z0-9_()])+$/,
+                                message: '详细描述只能包含中文、英文、数字、括号和下划线'
+                            }
+                        }
+                    },
+                    companyShortName: {
+                        validators: {
+                            regexp: {
+                                regexp: /^([^\x00-\xff]|[A-Za-z0-9_()])+$/,
+                                message: '公司简称只能包含中文、英文、数字、括号和下划线'
                             }
                         }
                     }
