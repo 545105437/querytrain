@@ -1,6 +1,7 @@
 package com.train.controller;
 
 import com.train.dto.CompanyDTO;
+import com.train.dto.SearchLogHistoryDTO;
 import com.train.enums.CompanyTypeEnum;
 import com.train.enums.ResultEnum;
 import com.train.enums.StateEnum;
@@ -8,6 +9,7 @@ import com.train.exception.CompanyException;
 import com.train.form.CompanyEditForm;
 import com.train.model.Company;
 import com.train.service.CompanyService;
+import com.train.service.SearchLogHistoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -37,6 +43,9 @@ public class ManagementController {
 
     @Autowired
     private CompanyService companyService;
+
+    @Autowired
+    private SearchLogHistoryService searchLogHistoryService;
 
     /**
      * 获取公司列表（待审核）
@@ -175,6 +184,71 @@ public class ManagementController {
 
         map.put("url","/querytrain/management/companylist");
         return new ModelAndView("common/success", map);
+    }
+
+
+    @GetMapping("/searchLogHistoryList")
+    public ModelAndView SearchLogHistoryList(@RequestParam(value = "startTime" ,defaultValue = "N") String startTime,
+                                    @RequestParam(value = "endTime" ,defaultValue = "N") String endTime,
+                                    @RequestParam(value = "page" ,defaultValue = "1") Integer page,
+                                    @RequestParam(value = "size", defaultValue = "10") Integer size,
+                                    Map<String, Object> map){
+
+        PageRequest request = new PageRequest(page - 1, size);
+//        Page<CompanyDTO> companyDTOPage = companyService.findList(companyName, request);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+       /* */
+        Calendar c = Calendar.getInstance();
+        Date startTimed = null;
+        Date endTimed = null;
+
+       if("N".equals(startTime)&&"N".equals(endTime)){
+           endTimed = new Date();//获取当前时间
+           c.setTime(new Date());
+           c.add(Calendar.DATE, - 7);
+           startTimed = c.getTime();//获取7天前时间
+           startTime = formatter.format(startTimed);
+           endTime = formatter.format(endTimed);
+       }else if(!"N".equals(startTime)&&!"N".equals(endTime)){
+           ParsePosition pos1 = new ParsePosition(0);
+           ParsePosition pos2 = new ParsePosition(0);
+           startTimed = formatter.parse(startTime, pos1);
+           endTimed = formatter.parse(endTime, pos2);
+       }else{
+           if("N".equals(startTime)){
+               startTime = "";
+               startTimed = null;
+               ParsePosition pos3 = new ParsePosition(0);
+               endTimed = formatter.parse(endTime, pos3);
+               endTime = formatter.format(endTimed);
+           }
+           if("N".equals(endTime)){
+               endTime="";
+               ParsePosition pos4 = new ParsePosition(0);
+               startTimed = formatter.parse(startTime, pos4);
+               endTimed = null;
+                startTime = formatter.format(startTimed);
+           }
+       }
+
+        Page<SearchLogHistoryDTO> searchLogHistoryDTOPage = null;
+       if (startTime == null && endTimed != null){
+           searchLogHistoryDTOPage = searchLogHistoryService.findSearchLogHistoriesByVisitTimeLessThanEqual(endTimed,request);
+       }else if(endTimed == null && startTime != null){
+           searchLogHistoryDTOPage = searchLogHistoryService.findSearchLogHistoriesByVisitTimeGreaterThanEqual(startTimed,request);
+       }else if(startTime != null && endTimed != null){
+           searchLogHistoryDTOPage = searchLogHistoryService.findSearchLogHistoriesByVisitTimeBetween(startTimed,endTimed,request);
+       }else{
+           searchLogHistoryDTOPage = searchLogHistoryService.findAll(request);
+       }
+        map.put("searchLogHistoryDTOPage", searchLogHistoryDTOPage);
+        map.put("currentPage", page);
+        map.put("size", size);
+        map.put("startTime", startTime);
+        map.put("endTime",endTime);
+
+        return new ModelAndView("management/searchloghistory", map);
     }
 
 }

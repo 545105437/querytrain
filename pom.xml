@@ -98,6 +98,12 @@
 			<artifactId>lombok</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.xiaoleilu</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>3.2.2</version>
+		</dependency>
+
 		<!-- websocket -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -117,6 +123,41 @@
 					<fork>true</fork>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<!-- <configuration>${basedir}/springside-findbugs.xml</configuration> -->
+					<threshold>High</threshold>
+					<effort>Default</effort>
+					<findbugsXmlOutput>true</findbugsXmlOutput>
+					<!-- findbugs xml输出路径 -->
+					<findbugsXmlOutputDirectory>target/site</findbugsXmlOutputDirectory>
+				</configuration>
+			</plugin>
+			<!--<plugin>
+				<groupId>com.wal</groupId>
+				<artifactId>wal-plugin</artifactId>
+				<version>1.0.2-SNAPSHOT</version>
+				<configuration>
+					<msg>This is a message!</msg>
+					<options>
+						<option>one</option>
+						<option>two</option>
+					</options>
+				</configuration>
+				&lt;!&ndash; 必须挂载，不然单独的plugin是不会运行的&ndash;&gt;
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>waledu</goal>
+							<goal>countjava</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>-->
 		</plugins>
 	</build>
 

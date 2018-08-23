@@ -20,6 +20,9 @@
             </ul>
         </li>
         <li>
+            <a href="/querytrain/management/searchLogHistoryList"><i class="fa fa-fw fa-list-alt"></i> 访问日志</a>
+        </li>
+        <li>
             <a href="/querytrain/management/logout"><i class="fa fa-fw fa-list-alt"></i> 登出</a>
         </li>
     </ul>

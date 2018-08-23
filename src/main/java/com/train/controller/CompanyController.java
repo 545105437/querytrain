@@ -1,5 +1,6 @@
 package com.train.controller;
 
+import com.train.annotation.AnSearchLogHistory;
 import com.train.dto.CompanyDTO;
 import com.train.enums.ResultEnum;
 import com.train.enums.StateEnum;
@@ -41,6 +42,7 @@ public class CompanyController {
      * @param map  查询
      * @return
      */
+    @AnSearchLogHistory(actiontype = "SER",action = "按参数查询公司列表")
     @GetMapping("/search")
     public ModelAndView search(@RequestParam("companyName") String companyName,
                                @RequestParam(value = "page" ,defaultValue = "1") Integer page,
