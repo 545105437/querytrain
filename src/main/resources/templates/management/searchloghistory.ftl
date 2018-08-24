@@ -94,7 +94,7 @@
                         <#list (currentPage - 3)..(currentPage + 3) as index>
                         <#--如果位于第一页和最后一页之间-->
                             <#if (index > 1) && (index < searchLogHistoryDTOPage.getTotalPages())>
-                                <li <#if currentPage == index>class="disabled"</#if>><a href="/querytrain/management/searchLogHistoryList?startTime=${startTime}&endTime=${endTime}&page=${currentPage - 1}&size=${size}" >${index}</a></li>
+                                <li <#if currentPage == index>class="disabled"</#if>><a href="/querytrain/management/searchLogHistoryList?startTime=${startTime}&endTime=${endTime}&page=${index}&size=${size}" >${index}</a></li>
                             </#if>
                         </#list>
 
@@ -104,7 +104,7 @@
                         </#if>
 
                     <#--最后页-->
-                        <li <#if currentPage == searchLogHistoryDTOPage.getTotalPages()>class="disabled"</#if>><a href="/querytrain/management/searchLogHistoryList?startTime=${startTime}&endTime=${endTime}&page=${currentPage - 1}&size=${size}" >${searchLogHistoryDTOPage.getTotalPages()}</a></li>
+                        <li <#if currentPage == searchLogHistoryDTOPage.getTotalPages()>class="disabled"</#if>><a href="/querytrain/management/searchLogHistoryList?startTime=${startTime}&endTime=${endTime}&page=${searchLogHistoryDTOPage.getTotalPages()}&size=${size}" >${searchLogHistoryDTOPage.getTotalPages()}</a></li>
                     </#if>
 
 
