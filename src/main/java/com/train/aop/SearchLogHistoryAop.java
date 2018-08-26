@@ -57,7 +57,7 @@ public class SearchLogHistoryAop {
 		searchLogHistory.setUrl(String.valueOf(request.getRequestURL()));//url
         /** 获取访问者真实ip */
         String ip = getIpAddr(request);
-        searchLogHistory.setIp(request.getRemoteAddr());//操作人IP地址
+        searchLogHistory.setIp(ip);//操作人IP地址
 
 		//录入数据库
 		SearchLogHistory history = searchLogHistoryService.save(searchLogHistory);
