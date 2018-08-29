@@ -193,8 +193,8 @@ public class ManagementController {
                                     @RequestParam(value = "page" ,defaultValue = "1") Integer page,
                                     @RequestParam(value = "size", defaultValue = "10") Integer size,
                                     Map<String, Object> map){
-
-        PageRequest request = new PageRequest(page - 1, size);
+        Sort sort = new Sort(Sort.Direction.DESC, "logId");
+        PageRequest request = new PageRequest(page - 1, size,sort);
 //        Page<CompanyDTO> companyDTOPage = companyService.findList(companyName, request);
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
