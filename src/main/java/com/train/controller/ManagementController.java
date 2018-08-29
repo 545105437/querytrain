@@ -191,7 +191,7 @@ public class ManagementController {
     public ModelAndView SearchLogHistoryList(@RequestParam(value = "startTime" ,defaultValue = "N") String startTime,
                                     @RequestParam(value = "endTime" ,defaultValue = "N") String endTime,
                                     @RequestParam(value = "page" ,defaultValue = "1") Integer page,
-                                    @RequestParam(value = "size", defaultValue = "10") Integer size,
+                                    @RequestParam(value = "size", defaultValue = "20") Integer size,
                                     Map<String, Object> map){
         Sort sort = new Sort(Sort.Direction.DESC, "logId");
         PageRequest request = new PageRequest(page - 1, size,sort);
