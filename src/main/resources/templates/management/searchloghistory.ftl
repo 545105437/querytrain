@@ -42,7 +42,7 @@
                         <tbody>
                         <#list searchLogHistoryDTOPage.content as searchLogHistoryDTO>
                         <tr>
-                            <td>${searchLogHistoryDTO.logId}</td>
+                            <td>${searchLogHistoryDTO_index+1}</td>
                             <td>${searchLogHistoryDTO.url}</td>
                             <td>${searchLogHistoryDTO.args}</td>
                             <td>${searchLogHistoryDTO.ip}</td>

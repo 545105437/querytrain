@@ -203,6 +203,13 @@ public class ManagementController {
         Date startTimed = null;
         Date endTimed = null;
 
+        if(startTime == "" || startTime == null){
+            startTime = "N";
+        }
+        if(endTime == "" || endTime == null){
+            endTime = "N";
+        }
+
        if("N".equals(startTime)&&"N".equals(endTime)){
            endTimed = new Date();//获取当前时间
            c.setTime(new Date());
@@ -233,11 +240,11 @@ public class ManagementController {
        }
 
         Page<SearchLogHistoryDTO> searchLogHistoryDTOPage = null;
-       if (startTime == null && endTimed != null){
+       if (startTimed == null && endTimed != null){
            searchLogHistoryDTOPage = searchLogHistoryService.findSearchLogHistoriesByVisitTimeLessThanEqual(endTimed,request);
-       }else if(endTimed == null && startTime != null){
+       }else if(endTimed == null && startTimed != null){
            searchLogHistoryDTOPage = searchLogHistoryService.findSearchLogHistoriesByVisitTimeGreaterThanEqual(startTimed,request);
-       }else if(startTime != null && endTimed != null){
+       }else if(startTimed != null && endTimed != null){
            searchLogHistoryDTOPage = searchLogHistoryService.findSearchLogHistoriesByVisitTimeBetween(startTimed,endTimed,request);
        }else{
            searchLogHistoryDTOPage = searchLogHistoryService.findAll(request);
