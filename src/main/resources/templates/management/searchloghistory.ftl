@@ -80,7 +80,7 @@
                     <#-- 以下为带省略号分页 -->
                     <#--第一页-->
                     <#if (searchLogHistoryDTOPage.getTotalPages() > 0)>
-                        <li <#if currentPage == 1>class="disabled"</#if>><a href="/querytrain/management/searchLogHistoryList?startTime=${startTime}&endTime=${endTime}&page=${currentPage - 1}&size=${size}" >1</a></li>
+                        <li <#if currentPage == 1>class="disabled"</#if>><a href="/querytrain/management/searchLogHistoryList?startTime=${startTime}&endTime=${endTime}&page=1&size=${size}" >1</a></li>
                     </#if>
 
                     <#--如果不只有一页-->
