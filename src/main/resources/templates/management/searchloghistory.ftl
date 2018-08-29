@@ -111,7 +111,7 @@
                     <#if currentPage gte searchLogHistoryDTOPage.getTotalPages()>
                         <li class="disabled"><a href="#">下一页</a></li>
                     <#else>
-                        <li><a href="/querytrain/management/searchLogHistoryList?startTime=${startTime}&endTime=${endTime}&page=${currentPage - 1}&size=${size}">下一页</a></li>
+                        <li><a href="/querytrain/management/searchLogHistoryList?startTime=${startTime}&endTime=${endTime}&page=${currentPage + 1}&size=${size}">下一页</a></li>
                     </#if>
                     </ul>
                 </div>
